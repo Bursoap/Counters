@@ -1,17 +1,17 @@
-class CharsCounter:
-    def __init__(self, sequence):
-        if isinstance(sequence, str):
-            self.seq = sequence
-        else:
-            raise ValueError("sequence type should be string")
-        self.count_chars()
+from collections import defaultdict
 
-    def count_chars(self):
-        count_dict = {}
+
+class CharsCounter:
+    def __init__(self):
+        self.seq = input("Enter your string here: ")
+        limit = int(input("Enter top chars limit: "))
+        self.count_top_chars(limit)
+
+    def count_top_chars(self, limit):
+        count_dict = defaultdict(int)
         for char in self.seq:
-            val = count_dict.get(char, 0) + 1
-            count_dict[char] = val
-        result = sorted(count_dict.items(), key=lambda x: x[1], reverse=True)[:3]
+            count_dict[char] += 1
+        result = sorted(count_dict.items(), key=lambda x: x[1], reverse=True)[:limit]
         for char, quantity in result:
             print(f"Char {char} in sequence repeated {quantity} times")
         return result
