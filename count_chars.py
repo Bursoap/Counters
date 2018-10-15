@@ -20,3 +20,7 @@ class CharsCounter:
         for char, quantity in result:
             print(f"Char {char} in sequence repeated {quantity} times")
         return result
+
+
+if __name__ == "__main__":
+    run = CharsCounter()
