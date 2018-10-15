@@ -14,3 +14,4 @@ class CharsCounter:
         result = sorted(count_dict.items(), key=lambda x: x[1], reverse=True)[:3]
         for char, quantity in result:
             print(f"Char {char} in sequence repeated {quantity} times")
+        return result
