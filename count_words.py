@@ -1,11 +1,10 @@
-import re
 from collections import defaultdict
 
 
 class CountWords:
     def __init__(self):
         text = input("Enter your text here: ")
-        self.words_list = self.split_text(text)
+        self.words_list = text.lower().split(' ')
         limit = 0
         while not limit:
             try:
@@ -13,10 +12,6 @@ class CountWords:
             except ValueError:
                 print("Input limit should be a number")
         self.count_top_words(limit)
-
-    def split_text(self, text):
-        words_list = text.lower.split(' ')
-        return words_list
 
     def count_top_words(self, limit):
         count_dict = defaultdict(int)
