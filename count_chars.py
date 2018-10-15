@@ -4,7 +4,12 @@ from collections import defaultdict
 class CharsCounter:
     def __init__(self):
         self.seq = input("Enter your string here: ")
-        limit = int(input("Enter top chars limit: "))
+        limit = 0
+        while not limit:
+            try:
+                limit = int(input("Enter top chars limit: "))
+            except ValueError:
+                print("Input limit should be a number")
         self.count_top_chars(limit)
 
     def count_top_chars(self, limit):
