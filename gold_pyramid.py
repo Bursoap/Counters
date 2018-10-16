@@ -12,16 +12,19 @@ class Pyramid:
         print(self.get_best_sum(method=method))
 
     def get_best_sum(self, method):
-        if method == 'up':
-            return self.get_up_sum()
-        elif method == 'down':
+        if method == 'up_to_down':
+            return self.up_to_down_sum()
+        elif method == 'down_to_up':
             down_row_data = [(num, [idx]) for idx, num in enumerate(self.pyramid[-1])]
-            return self.get_down_sum(down_row_data)
+            return self.down_to_up_sum(down_row_data)[0]
 
-    def get_up_sum(self):
-        pass
+    def up_to_down_sum(self, row=0, column=0, best_sum=0):
+        if row + 1 == len(self.pyramid):
+            return best_sum + self.pyramid[row][column]
+        return max(self.up_to_down_sum(row + 1, column, best_sum + self.pyramid[row][column]),
+                   self.up_to_down_sum(row + 1, column + 1, best_sum + self.pyramid[row][column]))
 
-    def get_down_sum(self, down_row_data):
+    def down_to_up_sum(self, down_row_data):
         result = []
         for idx, num in enumerate(self.pyramid[self.row_level]):
             first_down_sum = down_row_data[idx][0]
@@ -39,8 +42,8 @@ class Pyramid:
             return result[0]
         else:
             self.row_level -= 1
-            return self.get_down_sum(result)
+            return self.down_to_up_sum(result)
 
 
 if __name__ == '__main__':
-    x = Pyramid(numerals, method='up')
+    x = Pyramid(numerals, method='up_to_down')
