@@ -6,7 +6,7 @@ numerals = [[0],
 
 
 class Pyramid:
-    def __init__(self, pyramid, method='down'):
+    def __init__(self, pyramid, method='up_to_down'):
         self.pyramid = pyramid
         self.row_level = -2
         print(self.get_best_sum(method=method))
